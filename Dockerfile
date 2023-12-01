@@ -20,6 +20,11 @@ RUN wget --no-verbose -O apache-spark.tgz "https://archive.apache.org/dist/spark
 && rm apache-spark.tgz
 
 
+# Add commands to download, unzip, and move the ratings.csv file
+RUN wget --no-verbose "https://files.grouplens.org/datasets/movielens/ml-25m.zip" \
+&& unzip ml-25m.zip \
+&& mv ml-25m/ratings.csv ~/spark_docker/data
+
 # Apache spark environment
 FROM builder as apache-spark
 
