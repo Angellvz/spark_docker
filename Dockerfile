@@ -13,17 +13,6 @@ HADOOP_VERSION=3.2 \
 SPARK_HOME=/opt/spark \
 PYTHONHASHSEED=1
 
-# Download and uncompress spark from the apache archive
-RUN wget --no-verbose -O apache-spark.tgz "https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz" \
-&& mkdir -p /opt/spark \
-&& tar -xf apache-spark.tgz -C /opt/spark --strip-components=1 \
-&& rm apache-spark.tgz
-
-
-# Add commands to download, unzip, and move the ratings.csv file
-RUN wget --no-verbose "https://files.grouplens.org/datasets/movielens/ml-25m.zip" \
-&& unzip ml-25m.zip \
-&& mv ml-25m/ratings.csv ~/spark_docker/data
 
 # Apache spark environment
 FROM builder as apache-spark
