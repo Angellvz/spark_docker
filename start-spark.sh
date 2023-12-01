@@ -1,12 +1,6 @@
 #start-spark.sh
 #!/bin/bash
 . "/opt/spark/bin/load-spark-env.sh"
-
-# Add commands to download and unzip ratings.csv
-wget --no-verbose "https://files.grouplens.org/datasets/movielens/ml-25m.zip" \
-&& unzip ml-25m.zip \
-&& mv ml-25m/ratings.csv /opt/spark-data
-
 # When the spark work_load is master run class org.apache.spark.deploy.master.Master
 if [ "$SPARK_WORKLOAD" == "master" ];
 then
